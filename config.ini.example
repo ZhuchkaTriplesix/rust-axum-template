@@ -1,0 +1,27 @@
+# Copy to config.ini and adjust. Override path with CONFIG_INI or CONFIG_PATH.
+
+[HTTP]
+HOST = 0.0.0.0
+PORT = 8000
+REQUEST_TIMEOUT_SECS = 30
+
+[POSTGRES]
+CONNECTION_STRING =
+USER = postgres
+PASSWORD = your_password
+IP = 127.0.0.1
+PORT = 5432
+NAME = your_database
+MAX_CONNECTIONS = 5
+
+[REDIS]
+URL = redis://127.0.0.1:6379/0
+PASSWORD =
+
+[DOCS]
+BASIC_USER =
+BASIC_PASS =
+
+[APP]
+NAME = my-service
+ENV = local

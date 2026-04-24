@@ -1,0 +1,30 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "rust-axum-template",
+    "version": "0.1.0",
+    "description": "Axum DDD template — expand under `src/domain` and `src/application`."
+  },
+  "servers": [
+    { "url": "http://localhost:8000", "description": "local" }
+  ],
+  "paths": {
+    "/api/root/health": {
+      "get": {
+        "summary": "Liveness: Postgres + Redis",
+        "responses": {
+          "200": {
+            "description": "All dependencies reachable",
+            "content": { "application/json": { "schema": { "type": "object" } } }
+          },
+          "503": { "description": "A dependency is down" }
+        }
+      }
+    },
+    "/api/root/welcome": {
+      "get": {
+        "summary": "Example use case (domain + application)"
+      }
+    }
+  }
+}

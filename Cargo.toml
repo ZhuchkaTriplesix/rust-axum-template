@@ -1,0 +1,50 @@
+[package]
+name = "rust-axum-template"
+version = "0.1.0"
+edition = "2021"
+description = "Axum + DDD-structured service template (Postgres, Redis, migrations)."
+license = "MIT"
+publish = false
+
+[dependencies]
+axum = { version = "0.7", features = ["macros"] }
+tokio = { version = "1", features = ["full", "sync"] }
+tower = { version = "0.5", features = ["util"] }
+tower-http = { version = "0.6", features = [
+    "trace",
+    "request-id",
+    "cors",
+    "timeout",
+] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+anyhow = "1"
+base64 = "0.22"
+async-trait = "0.1"
+sqlx = { version = "0.8", features = [
+    "runtime-tokio",
+    "tls-rustls",
+    "postgres",
+    "migrate",
+] }
+# No `tls-rustls` here: add it when you need `rediss://` (then also add `tokio-rustls`).
+redis = { version = "0.28", default-features = false, features = [
+    "tokio-comp",
+    "connection-manager",
+] }
+configparser = "3"
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"
+http = "1"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
